@@ -8,7 +8,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Conways Game of Life", "consoleapp\Conways Game of Life.xproj", "{D62FBBA7-1A25-4A67-910D-48F819635829}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "nehola.gameoflife.consoleapp", "consoleapp\nehola.gameoflife.consoleapp.xproj", "{D62FBBA7-1A25-4A67-910D-48F819635829}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "nehola.gameoflife.entities", "nehola.gameoflife.entities\nehola.gameoflife.entities.xproj", "{BD05D1B2-A751-4C63-A4EB-98C022A5C9E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,11 +22,12 @@ Global
 		{D62FBBA7-1A25-4A67-910D-48F819635829}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D62FBBA7-1A25-4A67-910D-48F819635829}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D62FBBA7-1A25-4A67-910D-48F819635829}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD05D1B2-A751-4C63-A4EB-98C022A5C9E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD05D1B2-A751-4C63-A4EB-98C022A5C9E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD05D1B2-A751-4C63-A4EB-98C022A5C9E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD05D1B2-A751-4C63-A4EB-98C022A5C9E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{D62FBBA7-1A25-4A67-910D-48F819635829} = {42E451D8-B35D-4C28-9263-049C193AB96C}
 	EndGlobalSection
 EndGlobal

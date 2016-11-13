@@ -1,8 +1,9 @@
-﻿using System;
-using nehola.gameoflife.Entities;
-using nehola.gameoflife.Logger;
+﻿using nehola.gameoflife.Entities;
+using nehola.gameoflife.Entities.Logger;
+using System;
 
-namespace Conways_Game_of_Life
+
+namespace nehola.gameoflife.consoleapp
 {
     public class Program : IObserver<World>
     {
@@ -10,10 +11,11 @@ namespace Conways_Game_of_Life
 
         private LifeSimulation Simulation { get; set; }
 
-        private ConsoleWorldLogger logger = new ConsoleWorldLogger();
+        private IWorldLogger Logger { get; set; }
         public static void Main(string[] args)
         {
-            var program = new Program {Simulation = new LifeSimulation(40, 100)};
+            var program = new Program {Simulation = new LifeSimulation(40, 100), Logger = new ConsoleWorldLogger()
+        };
             program.Subscribe(program.Simulation);
             program.Simulation.Start(1);
         }
@@ -39,7 +41,7 @@ namespace Conways_Game_of_Life
         public void OnNext(World world)
         {
             Console.Clear();
-            world.Print(logger);
+            world.Print(Logger);
         }
 
         public virtual void Unsubscribe()
