@@ -1,0 +1,11 @@
+src/nehola.gameoflife.webapp/bin/
+src/nehola.gameoflife.webapp/obj/Debug/netcoreapp1.0/.IncrementalCache
+src/nehola.gameoflife.entities/obj/Debug/netcoreapp1.0/dotnet-compile-csc.rsp
+src/nehola.gameoflife.webapp/obj/Debug/netcoreapp1.0/.SDKVersion
+src/nehola.gameoflife.entities/obj/
+src/nehola.gameoflife.webapp/obj/Debug/netcoreapp1.0/WebProjectdotnet-compile.deps.json
+src/nehola.gameoflife.entities/bin/
+src/nehola.gameoflife.webapp/obj/
+src/nehola.gameoflife.consoleapp/obj/
+*.suo
+*.dg

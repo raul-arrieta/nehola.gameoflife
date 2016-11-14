@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Game of Life";
+}
+
+
+
+@section signalrScript
+{
+    $(function() {
+        var date = new Date();
+        var id = date.getTime();
+
+        initSignalR(id);
+    });
+
+    function initSignalR(id) {
+        try {
+            var connection = $.hubConnection();
+            
+            var hub = connection.createHubProxy('broadcaster');
+
+            hub.on('GenerationUpdated', function(message) {
+                debugger;
+            });
+    
+        } catch(ex) {
+        alert("Exception: " + ex);
+        }
+    };
+    
+    
+}
+
