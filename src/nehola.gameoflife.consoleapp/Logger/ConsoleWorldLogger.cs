@@ -18,8 +18,13 @@ namespace nehola.gameoflife.Entities.Logger
         {
             Console.Write(cell.IsAlive ? "#" : " ");
         }
+        
+        public void PrintForRowBegin(int row)
+        {
 
-        public void PrintForRow(Int32 row)
+        }
+
+        public void PrintForRowEnd(int row)
         {
             Console.WriteLine();
         }

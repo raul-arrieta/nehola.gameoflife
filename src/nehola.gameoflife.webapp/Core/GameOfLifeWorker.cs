@@ -22,10 +22,10 @@ namespace nehola.gameoflife.webapp.Core
 
         public void Start()
         {
-            Simulation = new LifeSimulation(40, 100);
+            Simulation = new LifeSimulation(100, 100);
             Logger = new WebWorldLogger();
             Subscribe(Simulation);
-            Simulation.Start(3);
+            Simulation.Start(0);
         }
 
         public void Subscribe(IObservable<World> provider)

@@ -15,7 +15,7 @@ namespace nehola.gameoflife.webapp.Logger
 
         private void AppendText(string text, bool newLine = false)
         {
-            OutPut = String.Format("{0}{1}{2}", OutPut, newLine ? "\\n" : String.Empty, text);
+            OutPut = String.Format("{0}{1}{2}", OutPut, newLine ? "<br/>" : String.Empty, text);
         }
 
         public void PrintGeneration(int generation)
@@ -25,19 +25,22 @@ namespace nehola.gameoflife.webapp.Logger
 
         public void PrintSeparator()
         {
-            AppendText("----------------------------------------------------------",true);
+            AppendText("<hr/>",true);
         }
 
         public void PrintForCell(Cell cell)
         {
-            AppendText(cell.IsAlive ? "#" : " ");
+            AppendText(String.Format("<div class=\"{0}\" />", cell.IsAlive ? "alive" : "dead"));
         }
 
-        public void PrintForRow(Int32 row)
+        public void PrintForRowBegin(int row)
         {
-            AppendText(String.Empty, true);
+            AppendText("<div class=\"row\">", false);
         }
 
-
+        public void PrintForRowEnd(int row)
+        {
+            AppendText("</div>", false);
+        }
     }
 }

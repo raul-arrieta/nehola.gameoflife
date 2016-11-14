@@ -6,6 +6,7 @@ namespace nehola.gameoflife.Entities.Logger
         void PrintGeneration(int generation);
         void PrintSeparator();
         void PrintForCell(Cell cell);
-        void PrintForRow(int row);
+        void PrintForRowBegin(int row);
+        void PrintForRowEnd(int row);
     }
 }
