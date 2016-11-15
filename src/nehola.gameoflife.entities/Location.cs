@@ -1,6 +1,8 @@
-﻿namespace nehola.gameoflife.Entities
+﻿using nehola.gameoflife.entities.Abstract;
+
+namespace nehola.gameoflife.Entities
 {
-    public class Location
+    public class Location: ILocation
     {
         public Location(int x, int y)
         {
@@ -8,10 +10,10 @@
             Y = y;
         }
 
-        private int X { get; }
-        private int Y { get; }
+        public int X { get; }
+        public int Y { get; }
 
-        public bool IsNeightbor(Location location)
+        public bool IsNeightbor(ILocation location)
         {
             return !IsSameLocation(location) &&
                    (
@@ -21,23 +23,23 @@
                    );
         }
 
-        protected bool IsSameLocation(Location location)
+        protected bool IsSameLocation(ILocation location)
         {
             return (X == location.X) && (Y == location.Y);
         }
 
-        protected bool IsPreviousRowNeightbor(Location location)
+        protected bool IsPreviousRowNeightbor(ILocation location)
         {
             return (X - 1 == location.X) &&
                    ((Y + 1 == location.Y) || (Y == location.Y) || (Y - 1 == location.Y));
         }
 
-        protected bool IsSameRowNeightbor(Location location)
+        protected bool IsSameRowNeightbor(ILocation location)
         {
             return (X == location.X) && ((Y + 1 == location.Y) || (Y - 1 == location.Y));
         }
 
-        protected bool IsNextRowNeightbor(Location location)
+        protected bool IsNextRowNeightbor(ILocation location)
         {
             return (X + 1 == location.X) &&
                    ((Y + 1 == location.Y) || (Y == location.Y) || (Y - 1 == location.Y));

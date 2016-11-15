@@ -1,4 +1,5 @@
-﻿using System;
+﻿using nehola.gameoflife.entities.Abstract;
+using System;
 
 namespace nehola.gameoflife.Entities.Logger
 {
@@ -14,7 +15,7 @@ namespace nehola.gameoflife.Entities.Logger
             Console.WriteLine("----------------------------------------------------------");
         }
 
-        public void PrintForCell(Cell cell)
+        public void PrintForCell(ICell cell)
         {
             Console.Write(cell.IsAlive ? "#" : " ");
         }

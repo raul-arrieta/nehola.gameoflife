@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using nehola.gameoflife.entities.Abstract;
 
 namespace nehola.gameoflife.Entities
 {
-    public class LifeSimulation : IObservable<World>
+    public class LifeSimulation : IObservable<IWorld>, ILifeSimulation
     {
-        private List<IObserver<World>> Observers { get; set; }
+        private List<IObserver<IWorld>> Observers { get; set; }
 
-        private World World { get; set; }
+        private IWorld World { get; set; }
 
         public LifeSimulation(int width, int height)
         {
             if (width <= 0 || height <= 0) throw new ArgumentOutOfRangeException("Size must be greater than zero");
 
-            Observers = new List<IObserver<World>>();
+            Observers = new List<IObserver<IWorld>>();
 
             World = new World(width, height);
             World.Populate();
@@ -31,7 +32,7 @@ namespace nehola.gameoflife.Entities
             }
         }
 
-        public IDisposable Subscribe(IObserver<World> observer)
+        public IDisposable Subscribe(IObserver<IWorld> observer)
         {
             if (!Observers.Contains(observer))
             {
@@ -49,14 +50,14 @@ namespace nehola.gameoflife.Entities
 
         internal class Unsubscriber : IDisposable
         {
-            public Unsubscriber(List<IObserver<World>> observers, IObserver<World> observer)
+            public Unsubscriber(List<IObserver<IWorld>> observers, IObserver<IWorld> observer)
             {
                 Observers = observers;
                 Observer = observer;
             }
 
-            private List<IObserver<World>> Observers { get; set; }
-            private IObserver<World> Observer { get; set; }
+            private List<IObserver<IWorld>> Observers { get; set; }
+            private IObserver<IWorld> Observer { get; set; }
 
             public void Dispose()
             {
