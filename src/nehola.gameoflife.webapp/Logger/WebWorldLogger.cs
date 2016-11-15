@@ -1,5 +1,5 @@
 ﻿using System;
-using nehola.gameoflife.Entities;
+using nehola.gameoflife.entities.Abstract;
 using nehola.gameoflife.Entities.Logger;
 
 namespace nehola.gameoflife.webapp.Logger
@@ -28,7 +28,7 @@ namespace nehola.gameoflife.webapp.Logger
             AppendText("<hr/>",true);
         }
 
-        public void PrintForCell(Cell cell)
+        public void PrintForCell(ICell cell)
         {
             AppendText(String.Format("<div class=\"{0}\" />", cell.IsAlive ? "alive" : "dead"));
         }

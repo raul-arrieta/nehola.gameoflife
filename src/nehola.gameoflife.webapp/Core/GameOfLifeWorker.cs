@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using nehola.gameoflife.Entities;
 using System;
+using nehola.gameoflife.entities.Abstract;
 using nehola.gameoflife.webapp.Logger;
 
 namespace nehola.gameoflife.webapp.Core
 {
-    public class GameOfLifeWorker : IObserver<World>
+    public class GameOfLifeWorker : IObserver<IWorld>
     {
         private IDisposable Unsubscriber { get; set; }
 
@@ -28,7 +29,7 @@ namespace nehola.gameoflife.webapp.Core
             Simulation.Start(0);
         }
 
-        public void Subscribe(IObservable<World> provider)
+        public void Subscribe(IObservable<IWorld> provider)
         {
             if (provider != null)
                 Unsubscriber = provider.Subscribe(this);
@@ -43,7 +44,7 @@ namespace nehola.gameoflife.webapp.Core
         {
         }
 
-        public void OnNext(World world)
+        public void OnNext(IWorld world)
         {
             world.Print(Logger);
 

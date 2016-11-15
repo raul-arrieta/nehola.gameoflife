@@ -1,11 +1,12 @@
 ﻿using nehola.gameoflife.Entities;
 using nehola.gameoflife.Entities.Logger;
 using System;
+using nehola.gameoflife.entities.Abstract;
 
 
 namespace nehola.gameoflife.consoleapp
 {
-    public class Program : IObserver<World>
+    public class Program : IObserver<IWorld>
     {
         private IDisposable Unsubscriber { get; set; }
 
@@ -20,7 +21,7 @@ namespace nehola.gameoflife.consoleapp
             program.Simulation.Start(1);
         }
 
-        public void Subscribe(IObservable<World> provider)
+        public void Subscribe(IObservable<IWorld> provider)
         {
             if (provider != null)
                 Unsubscriber = provider.Subscribe(this);
@@ -38,7 +39,7 @@ namespace nehola.gameoflife.consoleapp
             Environment.Exit(-1);
         }
 
-        public void OnNext(World world)
+        public void OnNext(IWorld world)
         {
             Console.Clear();
             world.Print(Logger);

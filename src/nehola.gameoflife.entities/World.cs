@@ -1,19 +1,20 @@
 ﻿using System;
+using nehola.gameoflife.entities.Abstract;
 using nehola.gameoflife.Entities.Logger;
 
 namespace nehola.gameoflife.Entities
 {
-    public class World
+    public class World: IWorld
     {
         private int Generation { get; set; }
 
         public World(int sizeX, int sizeY)
         {
-            Cells = new Cell[sizeX, sizeY];
+            Cells = new ICell[sizeX, sizeY];
             IterateAndDo((x, y) => { Cells[x, y] = new Cell(new Location(x, y)); }, x => { }, x => { });
         }
 
-        private Cell[,] Cells { get; }
+        private ICell[,] Cells { get; }
 
         public void Populate()
         {
@@ -21,7 +22,7 @@ namespace nehola.gameoflife.Entities
             IterateAndDo((x, y) => { Cells[x, y].IsAlive = rand.Next(0, 2) == 0; }, x => { }, x => { });
         }
 
-        public World Evolve()
+        public IWorld Evolve()
         {
             var nextGeneration = new World(Cells.GetLength(0), Cells.GetLength(1))
             {
@@ -65,7 +66,7 @@ namespace nehola.gameoflife.Entities
         ///     Any live cell with more than three live neighbours dies, as if by overcrowding.
         ///     Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
         /// </summary>
-        private bool CalculateLiveInNextGeneration(Cell cell)
+        private bool CalculateLiveInNextGeneration(ICell cell)
         {
             var numberOfAliveNeighbors = 0;
             IterateAndDo(
