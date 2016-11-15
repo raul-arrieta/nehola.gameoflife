@@ -9,3 +9,6 @@ src/nehola.gameoflife.webapp/obj/
 src/nehola.gameoflife.consoleapp/obj/
 *.suo
 *.dg
+src/nehola.gameoflife.consoleapp/bin/
+src/nehola.gameoflife.entities.tests/obj/
+src/nehola.gameoflife.entities.tests/bin/
