@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Game of Life";
+}
+
+@section customStyle {
+    .row {
+        display:block;
+        height: 10px;
+    }
+
+    .alive {
+        float:left;
+        width: 10px;
+        height: 10px;
+        boder: 1px solid black;
+        background-color: black;
+    }
+
+    .dead {
+        float:left;
+        width: 10px;
+        height: 10px;
+        boder: 1px solid black;
+    }
+}
+
+<div id="container"></div>
+
+@section signalrScript
+{
+    $(function() {
+    
+    try {
+    var connection = $.hubConnection();
+
+    var hub = connection.createHubProxy('broadcaster');
+
+    hub.on('GenerationUpdated', function(world) {
+        $('#container').html(world)
+    });
+
+    connection.start().done(function() {
+    });
+
+    } catch(ex) {
+    alert("Exception: " + ex);
+    }
+
+    });
+}
+

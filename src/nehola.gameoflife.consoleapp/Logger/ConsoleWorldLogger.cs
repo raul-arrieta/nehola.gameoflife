@@ -1,7 +1,6 @@
-﻿using nehola.gameoflife.Entities;
-using System;
+﻿using System;
 
-namespace nehola.gameoflife.Logger
+namespace nehola.gameoflife.Entities.Logger
 {
     public class ConsoleWorldLogger : IWorldLogger
     {
@@ -19,8 +18,13 @@ namespace nehola.gameoflife.Logger
         {
             Console.Write(cell.IsAlive ? "#" : " ");
         }
+        
+        public void PrintForRowBegin(int row)
+        {
 
-        public void PrintForRow(Int32 row)
+        }
+
+        public void PrintForRowEnd(int row)
         {
             Console.WriteLine();
         }

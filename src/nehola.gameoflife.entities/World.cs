@@ -10,7 +10,7 @@ namespace nehola.gameoflife.Entities
         public World(int sizeX, int sizeY)
         {
             Cells = new Cell[sizeX, sizeY];
-            IterateAndDo((x, y) => { Cells[x, y] = new Cell(new Location(x, y)); }, x => { });
+            IterateAndDo((x, y) => { Cells[x, y] = new Cell(new Location(x, y)); }, x => { }, x => { });
         }
 
         private Cell[,] Cells { get; }
@@ -18,7 +18,7 @@ namespace nehola.gameoflife.Entities
         public void Populate()
         {
             var rand = new Random();
-            IterateAndDo((x, y) => { Cells[x, y].IsAlive = rand.Next(0, 2) == 0; }, x => { });
+            IterateAndDo((x, y) => { Cells[x, y].IsAlive = rand.Next(0, 2) == 0; }, x => { }, x => { });
         }
 
         public World Evolve()
@@ -30,6 +30,7 @@ namespace nehola.gameoflife.Entities
 
             IterateAndDo(
                 (x, y) => { nextGeneration.Cells[x, y].IsAlive = CalculateLiveInNextGeneration(Cells[x, y]); },
+                x => { }, 
                 x => { }
             );
             return nextGeneration;
@@ -41,18 +42,20 @@ namespace nehola.gameoflife.Entities
             logger.PrintSeparator();
             IterateAndDo(
                 (x, y) => { logger.PrintForCell(Cells[x, y]); },
-                logger.PrintForRow
+                logger.PrintForRowBegin,
+                logger.PrintForRowEnd
             );
             logger.PrintSeparator();
         }
 
-        private void IterateAndDo(Action<int, int> actionForCell, Action<int> actionForRow)
+        private void IterateAndDo(Action<int, int> actionForCell, Action<int> actionForRowBegin, Action<int> actionForRowEnd)
         {
             for (int x = 0; x < Cells.GetLength(0); x++)
             {
+                actionForRowBegin(x);
                 for (int y = 0; y < Cells.GetLength(1); y++)
                     actionForCell(x, y);
-                actionForRow(x);
+                actionForRowEnd(x);
             }
         }
 
@@ -70,7 +73,7 @@ namespace nehola.gameoflife.Entities
                 {
                     if (Cells[x, y].IsAliveNeightbor(cell))
                         numberOfAliveNeighbors++;
-                }, x => { }
+                }, x => { }, x => { }
             );
 
             return (cell.IsAlive && ((numberOfAliveNeighbors == 2) || (numberOfAliveNeighbors == 3)))
